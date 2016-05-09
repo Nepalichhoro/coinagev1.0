@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coinage v1.0</title>
+    <!-- Latest compiled and minified JavaScript -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body ng-controller="coinappController">
+    <div class="jumbotron" >
+        <div class="col-md-12" >
+            <h1 style="color: blue">Coinage v1.0</h1>
+        <div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+        <form class="form" id="coinage" ng-submit="init()">
+            <div class="form-group">
+                <label for="amount"> <strong>Enter a sterling value for coin conversion. </strong> </label>
+                <input type="text" id="amount" placeholder="Enter monetary value.">
+                <span class="help-block">For example: £6.09, 392p</span> <br/>
+                <strong> Press 'Enter' key to calculate</strong>
+                <p>  Total number of pennies: {{ value1 }} </p>
+            </div>
+        </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+          <div class="panel panel-default">
+              <div ng-cloak class="error" ng-show="error">
+                    {{error}}
+                </div>
+                    <table class="table" ng-hide="error">
+                        <thead>
+                            <tr>
+                                <th>Coin</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-cloak>
+                            <tr ng-repeat="c in coinsAmount | orderBy: sortBy:reverse">
+                                <td>{{c.coin}}</td>
+                                <td>{{c.amount}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="panel-heading">
+                      <h2 class="panel-title">Explanation:</h2>
+                    </div>
+                    <div class="panel-body">
+                      Coinage v1.0 calculates the minimum number of Sterling coins needed to make the amount that is entered.
+                      <br><br>
+                      For example: 281p = 1 x £2, 1 x 50p, 1 x 20p, 5 x 2p, 1 x 1p
+                    </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/controller.js"></script>
+
+
+</body>
+
+</html>
